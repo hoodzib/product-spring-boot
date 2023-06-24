@@ -144,18 +144,20 @@ public class CalController {
     }
 
     @RequestMapping(path = {"/customer/search"})
-    public String customer(ProductEntity shop, Model model, String keyword) {
+    public String customer( Model model, String keyword) {
         if (keyword != null) {
             List<ProductEntity> list = service.getByKeywordPD(keyword);
             model.addAttribute("customer", list);
+            model.addAttribute("formBuy", new Amount());
         } else {
             List<ProductEntity> list = service.getAllPD();
             model.addAttribute("customer", list);
+            model.addAttribute("formBuy", new Amount());
         }
         return "customer";
     }
 
-    @RequestMapping(path = {"/main/search"})
+    @RequestMapping(path = {"/product/main/search"})
     public String main(RecordEntity shop, Model model, String keyword) {
         if (keyword != null) {
             List<RecordEntity> list = service.getByKeywordRC(keyword);

@@ -27,9 +27,10 @@ public class SpringSecurity {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/registration/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/", "/customer", "/customer/**", "/customer/buy/**").hasAnyRole("USER")
-                        .requestMatchers("/", "/product", "/product/**", "/product/deletePage/**").hasAnyRole("ADMIN")
-
+//                        .requestMatchers("/", "/customer", "/customer/**", "/customer/buy/**").hasAnyRole("USER")
+//                        .requestMatchers("/", "/product", "/product/**", "/product/deletePage/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/", "/customer", "/customer/**", "/customer/buy/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/", "/product", "/product/**", "/product/deletePage/**").hasAnyRole("ADMIN","USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
